@@ -18,15 +18,21 @@ module.exports = {
   getreply: function(event, replys){
     if(event.content.startsWith('!s')){
       var args = event.content.split(" ").slice(1);
-      for(i = 0; i < replys.length; i++){
-        if(args[1] == i){
-          event.reply(i + " - " + args);
-          return args;
-        } else {
-          event.reply(":warning: Por favor, coloque uma opção valida");
-          return false;
+
+      while (valid === false) {
+        for(i = 0; i < replys.length; i++){
+          if(args == i){
+            valid = true
+          }
         }
       }
+
+      if(valid){
+        event.reply(args);
+      } else {
+        event.reply(':warning: Por favor coloque uma opção valida!');
+      }
+
     } else {
       return false;
     }
